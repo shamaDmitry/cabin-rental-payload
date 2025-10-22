@@ -3,12 +3,17 @@ import Container from '@/components/core/Container'
 import LightBoxCard from '@/components/LightBoxCard'
 import { FC } from 'react'
 import { cn } from '@/lib/utils'
+import config from '@payload-config'
+import { getPayload } from 'payload'
 
 interface AdventureSectionProps {
   className?: string
 }
 
-const AdventureSection: FC<AdventureSectionProps> = ({ className }) => {
+const AdventureSection: FC<AdventureSectionProps> = async ({ className }) => {
+  const payload = await getPayload({ config })
+  const adventureCards = await payload.find({ collection: 'adventure-card' })
+
   return (
     <section
       className={cn('text-center py-20', className)}
@@ -31,17 +36,9 @@ const AdventureSection: FC<AdventureSectionProps> = ({ className }) => {
         </p>
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-10">
-          {Array(6)
-            .fill(0)
-            .map((_, index) => {
-              return (
-                <LightBoxCard
-                  key={index}
-                  headline="Yosemite Gateway Horse Ranch 'Getaway' Cottage"
-                  imageSrc="https://cabin-rental.weblium.site/res/5ce40621b84b1a002410eb9e/5ce425c34045b70023557d9f_optimized_1317.webp"
-                />
-              )
-            })}
+          {adventureCards.docs.map((card, index) => {
+            return <LightBoxCard key={index} headline={card.title} image={card.image} />
+          })}
         </div>
       </Container>
     </section>

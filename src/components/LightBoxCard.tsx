@@ -7,14 +7,21 @@ import Lightbox from 'yet-another-react-lightbox'
 import Zoom from 'yet-another-react-lightbox/plugins/zoom'
 import 'yet-another-react-lightbox/styles.css'
 import Counter from 'yet-another-react-lightbox/plugins/counter'
+import { Media } from '@/payload-types'
 
 interface LightBoxCardProps {
   headline: string
-  imageSrc: string
+  image: Media | string
 }
 
-const LightBoxCard: React.FC<LightBoxCardProps> = ({ headline, imageSrc }) => {
+const LightBoxCard: React.FC<LightBoxCardProps> = ({ headline, image }) => {
   const [open, setOpen] = useState(false)
+
+  const imageUrl = typeof image === 'string' ? image : image.url
+
+  if (!imageUrl) {
+    return null
+  }
 
   return (
     <div className="flex flex-col text-center">
@@ -24,15 +31,15 @@ const LightBoxCard: React.FC<LightBoxCardProps> = ({ headline, imageSrc }) => {
         close={() => {
           setOpen(false)
         }}
-        slides={[{ src: imageSrc }]}
+        slides={[{ src: imageUrl }]}
       />
 
       <Image
-        src={imageSrc}
+        src={imageUrl}
         width={500}
         height={500}
         alt={headline}
-        className="rounded mb-5 aspect-video object-cover w-full"
+        className="rounded mb-5 aspect-video object-cover w-full cursor-pointer"
         onClick={() => {
           setOpen(true)
         }}

@@ -1,0 +1,21 @@
+import type { CollectionConfig } from 'payload'
+
+export const AdventureCard: CollectionConfig = {
+  slug: 'adventure-card',
+  access: {
+    read: () => true,
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'image',
+      type: 'relationship',
+      relationTo: 'media',
+      required: true,
+    },
+  ],
+}
