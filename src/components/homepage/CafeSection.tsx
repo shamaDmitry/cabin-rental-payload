@@ -19,7 +19,7 @@ const CafeSection: FC<CafeSection> = ({
 }) => {
   return (
     <section
-      className={cn("min-h-[320px] py-[110px] relative text-center", className)}
+      className={cn("min-h-80 py-[110px] relative text-center", className)}
     >
       <div className="absolute size-full left-0 top-0 bg-secondary -z-20" />
 

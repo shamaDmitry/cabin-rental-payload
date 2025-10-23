@@ -12,7 +12,7 @@ interface AdventureSectionProps {
 
 const AdventureSection: FC<AdventureSectionProps> = async ({ className }) => {
   const payload = await getPayload({ config })
-  const adventureCards = await payload.find({ collection: 'adventure-card' })
+  const adventureCards = await payload.find({ collection: 'adventure-cards' })
 
   return (
     <section

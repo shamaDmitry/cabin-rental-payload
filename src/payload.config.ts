@@ -6,11 +6,15 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
+import { importExportPlugin } from '@payloadcms/plugin-import-export'
 
 import { Users } from '@/collections/Users'
 import { Media } from '@/collections/Media'
-import { AdventureCard } from '@/collections/AdventureCard'
+import { AdventureCards } from '@/collections/AdventureCards'
 import { Pages } from '@/collections/Pages'
+import { Cabin } from '@/collections/Cabin'
+import { Activity } from '@/collections/Activity'
+import { CafeCards } from '@/collections/CafeCards'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -21,12 +25,13 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {},
     livePreview: {
       url: 'http://localhost:3000',
       collections: ['pages'],
     },
   },
-  collections: [Users, Media, Pages, AdventureCard],
+  collections: [Users, Media, Pages, AdventureCards, Cabin, Activity, CafeCards],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -38,6 +43,9 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
-    // storage-adapter-placeholder
+    importExportPlugin({
+      collections: ['users', 'pages', 'media', 'activity'],
+      // see below for a list of available options
+    }), // storage-adapter-placeholder
   ],
 })

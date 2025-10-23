@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const AdventureCard: CollectionConfig = {
-  slug: 'adventure-card',
+export const AdventureCards: CollectionConfig = {
+  slug: 'adventure-cards',
   access: {
     read: () => true,
   },

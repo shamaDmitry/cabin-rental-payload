@@ -33,8 +33,6 @@ export default async function RootLayout({
   const payload = await getPayload({ config: payloadConfig })
   const { user } = await payload.auth({ headers })
 
-  console.log(user)
-
   return (
     <html lang="en">
       <body

@@ -1,0 +1,26 @@
+import type { CollectionConfig } from 'payload'
+
+export const CafeCards: CollectionConfig = {
+  slug: 'cafe-cards',
+  access: {
+    read: () => true,
+  },
+  fields: [
+    {
+      name: 'title',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'image',
+      type: 'relationship',
+      relationTo: 'media',
+      required: true,
+    },
+    {
+      name: 'description',
+      type: 'text',
+      required: true,
+    },
+  ],
+}

@@ -1,36 +1,36 @@
-import React, { FC } from "react";
-import { Card } from "@/components/ui/card";
-import Image from "next/image";
-import Headline from "@/components/core/Headline";
+import React, { FC } from 'react'
+import { Card } from '@/components/ui/card'
+import Image from 'next/image'
+import Headline from '@/components/core/Headline'
+import { cn } from '@/lib/utils'
+import { Media } from '@/payload-types'
 
 interface ActivityCardProps {
-  className?: string;
-  title?: string;
-  price?: string;
-  description?: string;
+  className?: string
+  title: string
+  price: number
+  description: string
+  image: Media | string
 }
 
-const ActivityCard: FC<ActivityCardProps> = () => {
+const ActivityCard: FC<ActivityCardProps> = ({ className, title, price, description, image }) => {
+  const imageUrl = typeof image === 'string' ? image : image.url
+
+  if (!imageUrl) {
+    return null
+  }
+
   return (
-    <Card className="p-5">
-      <Image
-        src="https://cabin-rental.weblium.site/res/weblium/5c8a6770f6c6a2002564fc11_optimized_1384_c1384x938-0x0.webp"
-        alt=""
-        width={1200}
-        height={200}
-        className="w-full rounded-xl"
-      />
+    <Card className={cn('p-5', className)}>
+      <Image src={imageUrl} alt={title} width={1200} height={200} className="w-full rounded-xl" />
 
-      <Headline as="h5">Horse Riding</Headline>
+      <Headline as="h5">{title}</Headline>
 
-      <div className="text-primary font-medium text-xl">$4/hour</div>
+      <div className="text-primary font-medium text-xl">${price}/hour</div>
 
-      <p>
-        Take a measured romantic horseback riding tour and enjoy our
-        unforgettable picturesque surroundings.
-      </p>
+      <p>{description}</p>
     </Card>
-  );
-};
+  )
+}
 
-export default ActivityCard;
+export default ActivityCard

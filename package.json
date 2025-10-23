@@ -21,6 +21,7 @@
     "@payloadcms/db-mongodb": "3.60.0",
     "@payloadcms/next": "3.60.0",
     "@payloadcms/payload-cloud": "3.60.0",
+    "@payloadcms/plugin-import-export": "^3.60.0",
     "@payloadcms/richtext-lexical": "3.60.0",
     "@payloadcms/ui": "3.60.0",
     "@radix-ui/react-popover": "^1.1.15",
