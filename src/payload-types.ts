@@ -183,21 +183,21 @@ export interface Media {
 export interface Page {
   id: string;
   title: string;
-  content: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
+  headline: string;
+  content: (
+    | {
+        title: string;
+        actions: string;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'cta';
+      }
+    | {
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'testimonials';
+      }
+  )[];
   updatedAt: string;
   createdAt: string;
 }
@@ -209,6 +209,7 @@ export interface AdventureCard {
   id: string;
   title: string;
   image: string | Media;
+  sort?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -519,7 +520,25 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
-  content?: T;
+  headline?: T;
+  content?:
+    | T
+    | {
+        cta?:
+          | T
+          | {
+              title?: T;
+              actions?: T;
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              id?: T;
+              blockName?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -530,6 +549,7 @@ export interface PagesSelect<T extends boolean = true> {
 export interface AdventureCardsSelect<T extends boolean = true> {
   title?: T;
   image?: T;
+  sort?: T;
   updatedAt?: T;
   createdAt?: T;
 }

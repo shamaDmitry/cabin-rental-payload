@@ -1,3 +1,5 @@
+import { Cta } from '@/blocks/Cta'
+import { Testimonials } from '@/blocks/Testimonials'
 import type { CollectionConfig } from 'payload'
 
 export const Pages: CollectionConfig = {
@@ -12,8 +14,14 @@ export const Pages: CollectionConfig = {
       required: true,
     },
     {
+      name: 'headline',
+      type: 'text',
+      required: true,
+    },
+    {
       name: 'content',
-      type: 'richText',
+      type: 'blocks',
+      blocks: [Cta, Testimonials],
       required: true,
     },
   ],

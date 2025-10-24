@@ -17,5 +17,12 @@ export const AdventureCards: CollectionConfig = {
       relationTo: 'media',
       required: true,
     },
+    {
+      name: 'sort',
+      type: 'number',
+      admin: {
+        position: 'sidebar',
+      },
+    },
   ],
 }
