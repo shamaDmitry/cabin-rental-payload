@@ -15,6 +15,9 @@ const nextConfig = {
   images: {
     remotePatterns: [new URL('https://cabin-rental.weblium.site/**')],
   },
+  experimental: {
+    globalNotFound: true,
+  },
 }
 
 export default withPayload(nextConfig, { devBundleServerPackages: false })

@@ -34,7 +34,7 @@ export default async function RootLayout({
   const { user } = await payload.auth({ headers })
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
